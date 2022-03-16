@@ -1,0 +1,34 @@
+get:
+  tags:
+    - Reasons
+  summary: Get Reasons 
+  description: |
+    Obtener el listado de razones para transferir
+  operationId: getReasons
+  security:
+    - main_auth:
+        - 'read:reasons'
+    - api_key: []
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Reasons.yaml
+          # example:
+          #   id: 1,
+          #   code: 20002,
+          #   active: 1,
+          #   description: "Servicios de Informática",
+          #   category: "SERVICIOS PRESTADOS",
+          #   order: 50
+    '401':
+      description: Unauthorized
+      $ref: ../components/responses/Unauthorized.yaml
+      
+            # 
+    # '403':
+    #   description: Forbidden
+    #   $ref: ../components/responses/Problem.yaml
+

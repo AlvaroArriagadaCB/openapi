@@ -12,6 +12,9 @@ tags:
   #   description: Example echo operations.
   - name: Quote
     description: Endpoint para realizar cotizaciones a través de parámetros de entrada
+    
+  - name: Reasons
+    description: Endpoint para obtener el listado de razones para transferir
   # - name: Tag
   #   description: This is a tag description.
 servers:
@@ -20,6 +23,8 @@ servers:
 paths:
   /quote:
     $ref: paths/quote.yaml
+  /reasons:
+    $ref: paths/reasons.yaml
   # '/users/{username}':
   #   $ref: 'paths/users@{username}.yaml'
   # /echo:

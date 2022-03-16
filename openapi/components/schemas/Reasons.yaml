@@ -1,0 +1,27 @@
+type: object
+properties:
+  id:
+    description: Identificador de la actividad
+    type: integer
+    example: 12
+  code:
+    description: Codigo de actividad
+    type: string
+    example: 20002
+  active:
+    description: Estado de actividad
+    type: string
+    example: 1
+  description:
+    description: Descripción de la actividad
+    type: integer
+    example: Servicios de Informática
+  category:
+    description: Categoría de la actividad
+    type: string
+    example: SERVICIOS PRESTADOS
+  order:
+    description: Order
+    type: integer
+    example: 50
+

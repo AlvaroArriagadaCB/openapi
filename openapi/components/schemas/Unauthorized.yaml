@@ -1,0 +1,22 @@
+type: object
+minProperties: 1
+additionalProperties: true
+description: >-
+  Unauthorized
+properties:
+  name:
+    type: string
+    description: >-
+      UnAuthorizedError
+    format: uri
+  message:
+    type: string
+    description: >-
+      Unauthorized
+  code:
+    type: integer
+    description: 401
+  type:
+    type: string
+    description: >-
+     INVALID_TOKEN

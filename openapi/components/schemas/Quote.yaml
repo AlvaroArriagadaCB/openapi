@@ -8,15 +8,17 @@ properties:
     description: Moneda
     type: string
     example: USD
-  # firstName:
-  #   description: User first name
-  #   type: string
-  #   minLength: 1
-  #   example: John
-  # lastName:
-  #   description: User last name
-  #   type: string
-  #   minLength: 1
-  #   example: Smith
-  # email:
-  #   $ref: ./Email.yaml
+  value:
+     origin:
+      description: Monto de destino
+      type: integer
+     usd:
+      description: USD
+      type: boolean
+  exchangeRate:
+    description: Tipo de cambio
+    type: integer
+  symbol:
+    description: Moneda
+    type: string
+    example: USD
