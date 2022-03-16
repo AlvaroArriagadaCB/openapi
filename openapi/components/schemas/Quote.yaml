@@ -18,7 +18,3 @@ properties:
   exchangeRate:
     description: Tipo de cambio
     type: integer
-  symbol:
-    description: Moneda
-    type: string
-    example: USD

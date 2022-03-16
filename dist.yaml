@@ -1,0 +1,176 @@
+openapi: 3.1.0
+info:
+  title: Contacto
+  contact:
+    email: alvaroarriagada@currencybird.cl
+  x-logo:
+    url: https://currencybird.cl/img/logo_bird.png
+  description: >+
+    # Introducción
+
+
+    Ésta API de prueba fue creada para realizar peticiones externas de empresas
+    que se encuentran registradas en el sitio web de
+    [CurrencyBird](https://www.currencybird.cl).
+
+tags:
+  - name: Quote
+    description: Endpoint para realizar cotizaciones a través de parámetros de entrada
+  - name: Reasons
+    description: Endpoint para obtener el listado de razones para transferir
+servers:
+  - url: http://example.com/api/v1
+  - url: https://example.com/api/v1
+paths:
+  /quote:
+    get:
+      tags:
+        - Quote
+      summary: Get Quote By Parameters
+      description: |
+        Obtener monto de destino a partir de un monto de origen
+      operationId: getQuote
+      parameters:
+        - name: amount
+          in: query
+          description: Monto "ej:300000"
+          schema:
+            type: integer
+        - name: quoteType
+          in: query
+          description: Tipo de cotización "sell"
+          schema:
+            type: string
+        - name: countryCode
+          in: query
+          description: País de destino "ej:DE"
+          schema:
+            type: string
+        - name: currency
+          in: query
+          description: Moneda de destino "ej:USD"
+          schema:
+            type: string
+      security:
+        - main_auth:
+            - read:quotes
+        - api_key: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quote'
+              example:
+                status: 1
+                symbol: USD
+                value:
+                  origin: 339
+                  used: false
+                exchangedRate: 884.96
+        '401':
+          description: Unauthorized
+          $ref: '#/components/responses/Unauthorized'
+  /reasons:
+    get:
+      tags:
+        - Reasons
+      summary: Get Reasons
+      description: |
+        Obtener el listado de razones para transferir
+      operationId: getReasons
+      security:
+        - main_auth:
+            - read:reasons
+        - api_key: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reasons'
+        '401':
+          description: Unauthorized
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    Quote:
+      type: object
+      properties:
+        status:
+          description: Estado de cotización
+          type: integer
+          example: 1
+        symbol:
+          description: Moneda
+          type: string
+          example: USD
+        value:
+          origin:
+            description: Monto de destino
+            type: integer
+          usd:
+            description: USD
+            type: boolean
+        exchangeRate:
+          description: Tipo de cambio
+          type: integer
+    Unauthorized:
+      type: object
+      minProperties: 1
+      additionalProperties: true
+      description: Unauthorized
+      properties:
+        name:
+          type: string
+          description: UnAuthorizedError
+          format: uri
+        message:
+          type: string
+          description: Unauthorized
+        code:
+          type: integer
+          description: 401
+        type:
+          type: string
+          description: INVALID_TOKEN
+    Reasons:
+      type: object
+      properties:
+        id:
+          description: Identificador de la actividad
+          type: integer
+          example: 12
+        code:
+          description: Codigo de actividad
+          type: string
+          example: 20002
+        active:
+          description: Estado de actividad
+          type: string
+          example: 1
+        description:
+          description: Descripción de la actividad
+          type: integer
+          example: Servicios de Informática
+        category:
+          description: Categoría de la actividad
+          type: string
+          example: SERVICIOS PRESTADOS
+        order:
+          description: Order
+          type: integer
+          example: 50
+  responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Unauthorized'
