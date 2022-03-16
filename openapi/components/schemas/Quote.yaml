@@ -1,0 +1,22 @@
+type: object
+properties:
+  status:
+    description: Estado de cotización
+    type: integer
+    example: 1
+  symbol:
+    description: Moneda
+    type: string
+    example: USD
+  # firstName:
+  #   description: User first name
+  #   type: string
+  #   minLength: 1
+  #   example: John
+  # lastName:
+  #   description: User last name
+  #   type: string
+  #   minLength: 1
+  #   example: Smith
+  # email:
+  #   $ref: ./Email.yaml

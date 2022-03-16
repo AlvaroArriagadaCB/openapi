@@ -1,0 +1,35 @@
+post:
+  tags:
+    - Quote
+  summary: Operation summary with examples
+  description: |
+    Operation description **markdown**.
+  operationId: postPathItemWithExamples
+  security:
+    - api_key: []
+    - basic_auth: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Schema.yaml
+        examples:
+          mapName:
+            summary: My first example
+            description: My first example's description.
+            value:
+              stringProperty: tada
+          mapNameDoesNotShowInDocsUnlessSummaryIsNotProvided:
+            value:
+              stringProperty: checkmark
+    description: requestBody description
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Quote.yaml
+    '400':
+      $ref: ../components/responses/Problem.yaml
