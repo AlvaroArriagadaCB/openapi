@@ -18,9 +18,11 @@ tags:
     description: Endpoint para realizar cotizaciones a través de parámetros de entrada
   - name: Reasons
     description: Endpoint para obtener el listado de razones para transferir
+  - name: Payments
+    description: Endpoints para ingresar un pago y consultar el estado
 servers:
-  - url: http://example.com/api/v1
-  - url: https://example.com/api/v1
+  - url: https://elb.currencybird.cl/apigateway-company/api/
+  - url: https://elb.currencybird.cl/apigateway-company/api/
 paths:
   /quote:
     get:
@@ -94,6 +96,36 @@ paths:
         '401':
           description: Unauthorized
           $ref: '#/components/responses/Unauthorized'
+  /payment:
+    post:
+      tags:
+        - Payment
+      summary: Create Payment
+      description: |
+        Crear un pago ingresando parámetros
+      operationId: operationId
+      security:
+        - api_key: []
+        - basic_auth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Payment'
+        description: requestBody description
+        required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Expires-After:
+              $ref: '#/components/headers/ExpiresAfter'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponse'
+        '400':
+          $ref: '#/components/responses/Problem'
 components:
   securitySchemes:
     BearerAuth:
@@ -167,6 +199,96 @@ components:
           description: Order
           type: integer
           example: 50
+    Payment:
+      type: object
+      title: Payments
+      properties:
+        beneficiaryId:
+          description: Identificador del destinatario
+          type: integer
+          example: 31757
+        reason:
+          description: Razón para transferir
+          type: integer
+          example: 55
+        amount:
+          description: Monto de origen en CLP
+          type: integer
+          example: 600000
+        quoteType:
+          description: Tipo de compra
+          type: string
+          example: buy
+        currency:
+          description: Moneda de destino
+          type: string
+          example: USD
+        countryCode:
+          description: País de destino de fondos
+          type: string
+          example: AL
+        message:
+          description: Mensaje de la transferencia
+          type: string
+          message: Fondos para estudios
+    PaymentResponse:
+      type: object
+      title: Payments
+      properties:
+        id:
+          description: Identificador de transferencia
+          type: integer
+          example: 66993
+        transactionCode:
+          description: Código de transferencia
+          type: string
+          example: 389c6c14cfb44
+        status:
+          description: Estado de la transferencia
+          type: string
+          example: new
+        companyId:
+          description: Identificador de la empresa
+          type: integer
+          example: 64
+    Problem:
+      type: object
+      additionalProperties: true
+      minProperties: 1
+      description: >-
+        The Problem Details JSON Object
+        [[RFC7807](https://tools.ietf.org/html/rfc7807)].
+      properties:
+        type:
+          type: string
+          description: >-
+            A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)]
+            that identifies the problem type. It should provide human-readable
+            documentation for the problem type. When this member is not present,
+            its value is assumed to be "about:blank".
+          format: uri
+        title:
+          type: string
+          description: >-
+            A short, human-readable summary of the problem type. It SHOULD NOT
+            change from occurrence to occurrence of the problem, except for
+            purposes of localization.
+        status:
+          type: integer
+          description: The HTTP status code.
+          minimum: 400
+          maximum: 599
+        detail:
+          type: string
+          description: >-
+            A human-readable explanation specific to this occurrence of the
+            problem.
+        instance:
+          type: string
+          description: >-
+            A URI reference that identifies the specific occurrence of the
+            problem.  It may or may not yield further information if
+            dereferenced.
   responses:
     Unauthorized:
       description: Unauthorized
@@ -174,3 +296,15 @@ components:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/Unauthorized'
+    Problem:
+      description: Problem
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+  headers:
+    ExpiresAfter:
+      description: date in UTC when token expires
+      schema:
+        type: string
+        format: date-time

@@ -1,0 +1,31 @@
+type: object
+title: Payments
+properties:
+  beneficiaryId:
+    description: Identificador del destinatario
+    type: integer
+    example: 31757
+  reason:
+    description: Razón para transferir
+    type: integer
+    example: 55
+  amount:
+    description: Monto de origen en CLP
+    type: integer
+    example: 600000
+  quoteType:
+    description: Tipo de compra
+    type: string
+    example: buy
+  currency:
+    description: Moneda de destino
+    type: string
+    example: USD
+  countryCode:
+    description: País de destino de fondos
+    type: string
+    example: AL
+  message:
+    description: Mensaje de la transferencia
+    type: string
+    message: "Fondos para estudios"

@@ -15,16 +15,21 @@ tags:
     
   - name: Reasons
     description: Endpoint para obtener el listado de razones para transferir
+  - name: Payments
+    description: Endpoints para ingresar un pago y consultar el estado 
   # - name: Tag
   #   description: This is a tag description.
 servers:
-  - url: 'http://example.com/api/v1'
-  - url: 'https://example.com/api/v1'
+
+  - url: 'https://elb.currencybird.cl/apigateway-company/api/'
+  - url: 'https://elb.currencybird.cl/apigateway-company/api/'
 paths:
   /quote:
     $ref: paths/quote.yaml
   /reasons:
     $ref: paths/reasons.yaml
+  /payment:
+    $ref: paths/payment.yaml
   # '/users/{username}':
   #   $ref: 'paths/users@{username}.yaml'
   # /echo:

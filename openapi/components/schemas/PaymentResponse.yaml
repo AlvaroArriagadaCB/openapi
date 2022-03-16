@@ -1,0 +1,19 @@
+type: object
+title: Payments
+properties:
+  id:
+    description: Identificador de transferencia
+    type: integer
+    example: 66993
+  transactionCode:
+    description: Código de transferencia
+    type: string
+    example: 389c6c14cfb44
+  status:
+    description: Estado de la transferencia
+    type: string
+    example: new
+  companyId:
+    description: Identificador de la empresa 
+    type: integer
+    example: 64

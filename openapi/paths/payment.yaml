@@ -1,0 +1,114 @@
+# post:
+#   tags:
+#     - Payment
+#   summary: Get Payment By Parameters
+#   description: |
+#     Obtener monto de destino a partir de un monto de origen
+#   operationId: getPayment
+#   parameters:
+#     - name: amount 
+#       in: query
+#       description: Monto "ej:300000"
+#       schema:
+#         type: integer
+#     - name: quoteType
+#       in: query
+#       description: Tipo de cotización "sell"
+#       schema:
+#         type: string
+#     - name: countryCode
+#       in: query
+#       description: País de destino "ej:DE"
+#       schema:
+#         type: string
+#     - name: currency 
+#       in: query
+#       description: Moneda de destino "ej:USD"
+#       schema:
+#         type: string
+        
+#   security:
+#     - main_auth:
+#         - 'read:quotes'
+#     - api_key: []
+#   responses:
+#     '200':
+#       description: Success
+#       content:
+#         application/json:
+#           schema:
+#             $ref: ../components/schemas/Payment.yaml
+#           example:
+#             status: 1
+#             symbol: USD
+#             value:
+#               origin: 339
+#               used: false
+#             exchangedRate: 884.96
+#     '401':
+#       description: Unauthorized
+#       $ref: ../components/responses/Unauthorized.yaml
+      
+            
+#     # '403':
+#     #   description: Forbidden
+#     #   $ref: ../components/responses/Problem.yaml
+
+post:
+  tags:
+    - Payment
+  summary: Create Payment
+  description: |
+   Crear un pago ingresando parámetros
+  operationId: operationId
+  security:
+    - api_key: []
+    - basic_auth: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Payment.yaml
+    description: requestBody description
+    required: true
+  responses:
+    '200':
+      description: OK
+      headers:
+        X-Expires-After:
+          $ref: ../components/headers/ExpiresAfter.yaml
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/PaymentResponse.yaml
+    '400':
+      $ref: ../components/responses/Problem.yaml
+  
+  # responses:
+  #   '200':
+  #     description: OK
+  #     headers:
+  #       X-Rate-Limit:
+  #         description: calls per hour allowed by the user
+  #         schema:
+  #           type: integer
+  #           format: int32
+  #       X-Expires-After:
+  #         $ref: ../components/headers/ExpiresAfter.yaml
+  #     content:
+  #       application/json:
+  #         schema:
+  #           type: string
+  #         examples:
+  #           response:
+  #             value: Hello world!
+  #       application/xml:
+  #         schema:
+  #           type: string
+  #       text/csv:
+  #         schema:
+  #           type: string
+  #   '400': 
+  #     description: Unauthorized
+
+
