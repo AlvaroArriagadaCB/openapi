@@ -1,0 +1,28 @@
+get:
+  tags:
+    - Payments
+  summary: Get Payment by ID
+  description: |
+   Obtener descripción de un pago a través de un Id
+  operationId: operationId
+  security:
+    - api_key: []
+    - basic_auth: []
+  parameters:
+    - name: id 
+      in: query
+      description: id de la transferencia
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: OK
+      headers:
+        X-Expires-After:
+          $ref: ../components/headers/ExpiresAfter.yaml
+      content:
+        application/json:
+          schema:
+            $ref: ../components/responses/Payment.yaml
+    '400':
+      $ref: ../components/responses/Problem.yaml

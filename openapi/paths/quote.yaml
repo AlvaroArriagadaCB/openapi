@@ -3,17 +3,18 @@ get:
     - Quote
   summary: Get Quote By Parameters
   description: |
-    Obtener monto de destino a partir de un monto de origen
+    Endpoint para realizar una cotización, a partir de un monto de origen y una moneda, se obtiene el monto de destino.
+    
   operationId: getQuote
   parameters:
     - name: amount 
       in: query
-      description: Monto "ej:300000"
+      description: Monto "ej:100000", montos mayores
       schema:
         type: integer
     - name: quoteType
       in: query
-      description: Tipo de cotización "sell"
+      description: Tipo de cotización "sell" 
       schema:
         type: string
     - name: countryCode
@@ -48,8 +49,7 @@ get:
     '401':
       description: Unauthorized
       $ref: ../components/responses/Unauthorized.yaml
-      
-            
+                  
     # '403':
     #   description: Forbidden
     #   $ref: ../components/responses/Problem.yaml

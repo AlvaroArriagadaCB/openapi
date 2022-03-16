@@ -1,0 +1,7 @@
+type: object
+title: Payments
+properties:
+  status:
+    description: Estado de la transferencia
+    type: string
+    example: new

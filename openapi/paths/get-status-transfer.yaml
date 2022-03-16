@@ -1,0 +1,28 @@
+get:
+  tags:
+    - Payments
+  summary: Get payment status
+  description: |
+   Obtener el estado de una transferencia a través de su código
+  operationId: operationId
+  security:
+    - api_key: []
+    - basic_auth: []
+  parameters:
+    - name: transactionCode 
+      in: query
+      description: Código de la transacción
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+      headers:
+        X-Expires-After:
+          $ref: ../components/headers/ExpiresAfter.yaml
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/PaymentStatus.yaml
+    '400':
+      $ref: ../components/responses/Problem.yaml

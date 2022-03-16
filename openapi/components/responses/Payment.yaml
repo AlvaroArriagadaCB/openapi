@@ -1,0 +1,59 @@
+type: object
+title: get-transfer
+properties:
+  id:
+    description: ID de la transferencias
+    type: integer
+    example: 663123991
+  userId:
+    description: ID del usuario creador
+    type: integer
+    example: 64123943
+  accountId:
+    description: ID de la cuenta
+    type: integer
+    example: 999779
+  amount:
+    description: Monto de origen
+    type: integer
+    example: 300000
+  mxAmount:
+    description: Monto de destino
+    type: integer
+    example: 88123
+  expectedRate:
+    description: Tipo de cambio
+    type: integer
+    example: 827.21
+  reason:
+    description: Razón de la transferencia
+    type: integer
+    message: 55
+  date:
+    description: Fecha de la transferencia
+    type: date
+    example: 2022-03-14T20:46:59.000Z
+  transferCode:
+    description: Código de a transferencia
+    type: string
+    example: a8e1d53291by4
+  status:
+    description: Estado de la transferencia
+    type: string
+    example: new
+  type:
+    description: Tipo de la transferencia
+    type: integer
+    example: 1
+  message:
+    description: Mensaje de la transferencia
+    type: string
+    example: Fondos para estudios en el extrajero
+  companyId:
+    description: Id de la empresa
+    type: integer
+    example: 64
+  uniqueNumber:
+    description: Codigo para retiro en sucrusal
+    type: integer
+    eample: 2084584023

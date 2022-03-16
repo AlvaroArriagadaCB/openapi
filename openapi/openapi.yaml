@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Contacto
+  title: API para empresas
   contact:
     email: alvaroarriagada@currencybird.cl
   x-logo:
@@ -8,22 +8,18 @@ info:
   description:
     $ref: ./info-description.md
 tags:
-  # - name: Echo
-  #   description: Example echo operations.
   - name: Quote
     description: Endpoint para realizar cotizaciones a través de parámetros de entrada
-    
   - name: Reasons
     description: Endpoint para obtener el listado de razones para transferir
   - name: Payments
     description: Endpoints para ingresar un pago y consultar el estado 
   - name: Beneficiaries
     description: Endpoints para consultar destinatarios asociados a una empresa
-  # - name: Tag
-  #   description: This is a tag description.
+
 servers:
 
-  - url: 'https://elb.currencybird.cl/apigateway-company/api/'
+  - url: 'http://elb.currencybird.cl/apigateway-company/api/'
   - url: 'https://elb.currencybird.cl/apigateway-company/api/'
 paths:
   /quote:
@@ -32,16 +28,13 @@ paths:
     $ref: paths/reasons.yaml
   /payments:
     $ref: paths/payments.yaml
+  /get-transfer:
+    $ref: paths/get-transfer.yaml
+  /get-status-transfer:
+    $ref: paths/get-status-transfer.yaml
   /beneficiaries:
     $ref: paths/beneficiaries@{rut}.yaml
-  # '/users/{username}':
-  #   $ref: 'paths/users@{username}.yaml'
-  # /echo:
-  #   $ref: paths/echo.yaml
-  # /pathItem:
-  #   $ref: paths/path-item.yaml
-  # /pathItemWithExamples:
-  #   $ref: paths/path-item-with-examples.yaml
+    
 components:
   securitySchemes:
     BearerAuth:
