@@ -1,0 +1,96 @@
+type: object
+properties:
+  id:
+    description: Identificador del destinatario
+    type: integer
+    example: 12
+  name:
+    description: Nombre del destinatario
+    type: string
+    example: "Jim"
+  lastName:
+    description: Apellido del destinatario
+    type: string
+    example: "Morrison"
+  address:
+    description: Dirección del destinatario
+    type: string
+    example: Avenida Louisandres 921
+  email:
+    description: Email del destinatario
+    type: string
+    example: jim@morrison.com
+  type:
+    description: Tipo de destinatario
+    type: string
+    example: person
+  postalCode:
+    description: Código postal
+    type: integer
+    example: 53000000
+  companyId:
+    description: Id de la empresa
+    type: integer
+    example: 64
+  CountryId:
+    description: Nacionalidad
+    type: integer
+    example: 2
+  city:
+    description: Ciudad
+    type: string
+    example: Aranjuez
+  stateProvince:
+    description: Provincia o estado
+    type: string
+    example: Los lagos
+  phone:
+    description: Teléfono
+    type: integer
+    example: null
+  postauserId:
+    description: Id del usuario creador (nulo)
+    type: integer
+    example: null
+  residenceCountry:
+    description: Id del país de destino
+    type: integer
+    example: 164
+  Company.id:
+    description: Empresa que creo
+    type: integer
+    example: 64
+  Company.name:
+    description: Nombre de empresa
+    type: string
+    example: LG
+  Company.email:
+    description: Email de la empresa
+    type: string
+    example: lg@test.cl
+  Company.createdById:
+    description: Id del usuario que lo creo
+    type: integer
+    example: 64943
+  Country.id:
+    description: País de destino
+    type: integer
+    example: 2
+  Country.name:
+    description: Nombre del país de destino
+    type: string
+    example: Afganistán
+  Country.currencyId:
+    description: Moneda país de destino
+    type: integer
+    example: 2
+  Country.Currency.name:
+    description: Moneda país de destino
+    type: string
+    example: afgani
+  Country.Currency.symbol:
+    description: Simbolo moneda de destino
+    type: string
+    example: AFN
+    
+

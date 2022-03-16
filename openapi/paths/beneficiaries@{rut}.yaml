@@ -1,0 +1,59 @@
+post:
+  tags:
+    - Beneficiaries
+  summary: Get Beneficiaries By Rut
+  description: |
+    Obtener la lista de destinatarios por rut de la empresa
+  operationId: getBeneficiary
+  parameters:
+    - name: rut 
+      in: path
+      description: Rut de la empresa
+      schema:
+        type: string
+  security:
+    - main_auth:
+        - 'read:quotes'
+    - api_key: []
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/responses/Beneficiaries.yaml
+          example:
+            id: 31598,
+            name: Jim
+            lastName: Morrison
+            address: Manuel Rodriguez 44,
+            email: jm@test.cl
+            type: person,
+            postalCode: 5380000,
+            companyId: 64,
+            countryId: 5,
+            city: null,
+            stateProvince: null,
+            phone: 940400217,
+            userId: null,
+            residenceCountry: 164,
+            Company.id: 64,
+            Company.rut: 340878817,
+            Company.name: LG,
+            Company.email: lg@test.cl
+            Company.createdById: 64943,
+            Country.id: 2,
+            Country.name: Afganistán,
+            Country.currencyId: 2,
+            Country.Currency.id: 2,
+            Country.Currency.name: afgani,
+            Country.Currency.symbol: AFN
+    '401':
+      description: Unauthorized
+      $ref: ../components/responses/Unauthorized.yaml
+      
+            
+    # '403':
+    #   description: Forbidden
+    #   $ref: ../components/responses/Problem.yaml
+

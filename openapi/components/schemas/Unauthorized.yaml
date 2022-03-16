@@ -7,16 +7,21 @@ properties:
   name:
     type: string
     description: >-
-      UnAuthorizedError
+      Describe error de no autorización
     format: uri
+    example:
+      UnAuthorizedError
   message:
     type: string
     description: >-
       Unauthorized
+    example:
+      Unauthorized
   code:
     type: integer
-    description: 401
+    description: Describe el código del error
+    example: 401
   type:
     type: string
-    description: >-
-     INVALID_TOKEN
+    description: describe el tipo del error
+    example: INVALID_TOKEN

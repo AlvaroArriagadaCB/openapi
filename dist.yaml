@@ -20,6 +20,8 @@ tags:
     description: Endpoint para obtener el listado de razones para transferir
   - name: Payments
     description: Endpoints para ingresar un pago y consultar el estado
+  - name: Beneficiaries
+    description: Endpoints para consultar destinatarios asociados a una empresa
 servers:
   - url: https://elb.currencybird.cl/apigateway-company/api/
   - url: https://elb.currencybird.cl/apigateway-company/api/
@@ -96,10 +98,10 @@ paths:
         '401':
           description: Unauthorized
           $ref: '#/components/responses/Unauthorized'
-  /payment:
+  /payments:
     post:
       tags:
-        - Payment
+        - Payments
       summary: Create Payment
       description: |
         Crear un pago ingresando parámetros
@@ -111,7 +113,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Payment'
+              $ref: '#/components/schemas/Payments'
         description: requestBody description
         required: true
       responses:
@@ -126,6 +128,60 @@ paths:
                 $ref: '#/components/schemas/PaymentResponse'
         '400':
           $ref: '#/components/responses/Problem'
+  /beneficiaries:
+    post:
+      tags:
+        - Beneficiaries
+      summary: Get Beneficiaries By Rut
+      description: |
+        Obtener la lista de destinatarios por rut de la empresa
+      operationId: getBeneficiary
+      parameters:
+        - name: rut
+          in: path
+          description: Rut de la empresa
+          schema:
+            type: string
+      security:
+        - main_auth:
+            - read:quotes
+        - api_key: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Beneficiaries'
+              example:
+                id: 31598,
+                name: Jim
+                lastName: Morrison
+                address: Manuel Rodriguez 44,
+                email: jm@test.cl
+                type: person,
+                postalCode: 5380000,
+                companyId: 64,
+                countryId: 5,
+                city: null,
+                stateProvince: null,
+                phone: 940400217,
+                userId: null,
+                residenceCountry: 164,
+                Company.id: 64,
+                Company.rut: 340878817,
+                Company.name: LG,
+                Company.email: lg@test.cl
+                Company.createdById: 64943,
+                Country.id: 2,
+                Country.name: Afganistán,
+                Country.currencyId: 2,
+                Country.Currency.id: 2,
+                Country.Currency.name: afgani,
+                Country.Currency.symbol: AFN
+        '401':
+          description: Unauthorized
+          $ref: '#/components/responses/Unauthorized'
 components:
   securitySchemes:
     BearerAuth:
@@ -161,17 +217,21 @@ components:
       properties:
         name:
           type: string
-          description: UnAuthorizedError
+          description: Describe error de no autorización
           format: uri
+          example: UnAuthorizedError
         message:
           type: string
           description: Unauthorized
+          example: Unauthorized
         code:
           type: integer
-          description: 401
+          description: Describe el código del error
+          example: 401
         type:
           type: string
-          description: INVALID_TOKEN
+          description: describe el tipo del error
+          example: INVALID_TOKEN
     Reasons:
       type: object
       properties:
@@ -199,7 +259,7 @@ components:
           description: Order
           type: integer
           example: 50
-    Payment:
+    Payments:
       type: object
       title: Payments
       properties:
@@ -289,6 +349,101 @@ components:
             A URI reference that identifies the specific occurrence of the
             problem.  It may or may not yield further information if
             dereferenced.
+    Beneficiaries:
+      type: object
+      properties:
+        id:
+          description: Identificador del destinatario
+          type: integer
+          example: 12
+        name:
+          description: Nombre del destinatario
+          type: string
+          example: Jim
+        lastName:
+          description: Apellido del destinatario
+          type: string
+          example: Morrison
+        address:
+          description: Dirección del destinatario
+          type: string
+          example: Avenida Louisandres 921
+        email:
+          description: Email del destinatario
+          type: string
+          example: jim@morrison.com
+        type:
+          description: Tipo de destinatario
+          type: string
+          example: person
+        postalCode:
+          description: Código postal
+          type: integer
+          example: 53000000
+        companyId:
+          description: Id de la empresa
+          type: integer
+          example: 64
+        CountryId:
+          description: Nacionalidad
+          type: integer
+          example: 2
+        city:
+          description: Ciudad
+          type: string
+          example: Aranjuez
+        stateProvince:
+          description: Provincia o estado
+          type: string
+          example: Los lagos
+        phone:
+          description: Teléfono
+          type: integer
+          example: null
+        postauserId:
+          description: Id del usuario creador (nulo)
+          type: integer
+          example: null
+        residenceCountry:
+          description: Id del país de destino
+          type: integer
+          example: 164
+        Company.id:
+          description: Empresa que creo
+          type: integer
+          example: 64
+        Company.name:
+          description: Nombre de empresa
+          type: string
+          example: LG
+        Company.email:
+          description: Email de la empresa
+          type: string
+          example: lg@test.cl
+        Company.createdById:
+          description: Id del usuario que lo creo
+          type: integer
+          example: 64943
+        Country.id:
+          description: País de destino
+          type: integer
+          example: 2
+        Country.name:
+          description: Nombre del país de destino
+          type: string
+          example: Afganistán
+        Country.currencyId:
+          description: Moneda país de destino
+          type: integer
+          example: 2
+        Country.Currency.name:
+          description: Moneda país de destino
+          type: string
+          example: afgani
+        Country.Currency.symbol:
+          description: Simbolo moneda de destino
+          type: string
+          example: AFN
   responses:
     Unauthorized:
       description: Unauthorized

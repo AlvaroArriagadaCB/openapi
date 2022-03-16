@@ -1,0 +1,30 @@
+post:
+  tags:
+    - Payments
+  summary: Create Payment
+  description: |
+   Crear un pago ingresando parámetros
+  operationId: operationId
+  security:
+    - api_key: []
+    - basic_auth: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Payments.yaml
+    description: requestBody description
+    required: true
+  responses:
+    '200':
+      description: OK
+      headers:
+        X-Expires-After:
+          $ref: ../components/headers/ExpiresAfter.yaml
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/PaymentResponse.yaml
+    '400':
+      $ref: ../components/responses/Problem.yaml
+  
