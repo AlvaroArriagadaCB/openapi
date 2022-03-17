@@ -128,7 +128,7 @@ paths:
                 $ref: '#/components/schemas/PaymentResponse'
         '400':
           $ref: '#/components/responses/Problem'
-  /get-transfer:
+  /payments/{transactionCode}:
     get:
       tags:
         - Payments

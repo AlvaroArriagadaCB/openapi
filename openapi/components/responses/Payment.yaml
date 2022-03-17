@@ -1,5 +1,5 @@
 type: object
-title: get-transfer
+title: payments
 properties:
   id:
     description: ID de la transferencias

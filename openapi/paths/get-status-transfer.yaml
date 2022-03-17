@@ -1,7 +1,7 @@
 get:
   tags:
     - Payments
-  summary: Get payment status
+  summary: Get Payment status
   description: |
    Obtener el estado de una transferencia a través de su código
   operationId: operationId

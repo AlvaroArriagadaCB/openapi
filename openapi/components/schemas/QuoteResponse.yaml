@@ -1,0 +1,20 @@
+type: object
+properties:
+  status:
+    description: Estado de cotización
+    type: integer
+    example: 1
+  symbol:
+    description: Moneda
+    type: string
+    example: USD
+  value:
+     origin:
+      description: Monto de destino
+      type: integer
+     usd:
+      description: USD
+      type: boolean
+  exchangeRate:
+    description: Tipo de cambio
+    type: integer

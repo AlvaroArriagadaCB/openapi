@@ -1,20 +1,17 @@
 type: object
 properties:
-  status:
-    description: Estado de cotización
+  amount:
+    description: Monto que se deja cotizar
     type: integer
-    example: 1
-  symbol:
-    description: Moneda
+    example: 100000
+  quoteType:
+    description: Tipo de cotización
     type: string
-    example: USD
-  value:
-     origin:
-      description: Monto de destino
-      type: integer
-     usd:
-      description: USD
-      type: boolean
-  exchangeRate:
+    example: sell
+  countryCode:
+    description: País de destino (ISO  Code 2)
+    type: string
+    example: PE
+  currency:
     description: Tipo de cambio
-    type: integer
+    type: string

@@ -8,7 +8,7 @@ info:
   description:
     $ref: ./info-description.md
 tags:
-  - name: Quote
+  - name: Quotes
     description: Endpoint para realizar cotizaciones a través de parámetros de entrada
   - name: Reasons
     description: Endpoint para obtener el listado de razones para transferir
@@ -22,15 +22,15 @@ servers:
   - url: 'http://elb.currencybird.cl/apigateway-company/api/'
   - url: 'https://elb.currencybird.cl/apigateway-company/api/'
 paths:
-  /quote:
-    $ref: paths/quote.yaml
+  /quotes:
+    $ref: paths/quotes.yaml
   /reasons:
     $ref: paths/reasons.yaml
   /payments:
     $ref: paths/payments.yaml
-  /get-transfer:
+  /payments/{transactionCode}:
     $ref: paths/get-transfer.yaml
-  /get-status-transfer:
+  /payments/{transactionCode}/status:
     $ref: paths/get-status-transfer.yaml
   /beneficiaries:
     $ref: paths/beneficiaries@{rut}.yaml

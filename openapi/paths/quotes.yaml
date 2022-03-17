@@ -1,32 +1,18 @@
-get:
+post:
   tags:
-    - Quote
-  summary: Get Quote By Parameters
+    - Quotes
+  summary: Create Quote
   description: |
     Endpoint para realizar una cotización, a partir de un monto de origen y una moneda, se obtiene el monto de destino.
     
   operationId: getQuote
-  parameters:
-    - name: amount 
-      in: query
-      description: Monto "ej:100000", montos mayores
-      schema:
-        type: integer
-    - name: quoteType
-      in: query
-      description: Tipo de cotización "sell" 
-      schema:
-        type: string
-    - name: countryCode
-      in: query
-      description: País de destino "ej:DE"
-      schema:
-        type: string
-    - name: currency 
-      in: query
-      description: Moneda de destino "ej:USD"
-      schema:
-        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Quote.yaml
+    description: requestBody description
+    required: true
         
   security:
     - main_auth:
@@ -38,7 +24,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/Quote.yaml
+            $ref: ../components/schemas/QuoteResponse.yaml
           example:
             status: 1
             symbol: USD
