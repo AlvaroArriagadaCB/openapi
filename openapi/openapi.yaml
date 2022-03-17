@@ -29,9 +29,9 @@ paths:
   /payments:
     $ref: paths/payments.yaml
   /payments/{transactionCode}:
-    $ref: paths/get-transfer.yaml
+    $ref: paths/get-transfer@{transactionCode}.yaml
   /payments/{transactionCode}/status:
-    $ref: paths/get-status-transfer.yaml
+    $ref: paths/get-status-transfer@{transactionCode}.yaml
   /beneficiaries:
     $ref: paths/beneficiaries@{rut}.yaml
     
