@@ -1,7 +1,7 @@
 type: object
 properties:
   amount:
-    description: Monto que se deja cotizar
+    description: Monto a cotizar
     type: integer
     example: 100000
   quoteType:
