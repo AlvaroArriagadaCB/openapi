@@ -10,7 +10,7 @@ get:
     - basic_auth: []
   parameters:
     - name: transactionCode 
-      in: query
+      in: path
       description: Código de la transacción
       schema:
         type: string

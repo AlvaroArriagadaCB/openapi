@@ -3,17 +3,17 @@ get:
     - Payments
   summary: Get Payment by ID
   description: |
-   Obtener descripción de un pago a través de un Id
+   Obtener descripción de un pago a través de su código
   operationId: operationId
   security:
     - api_key: []
     - basic_auth: []
   parameters:
-    - name: id 
-      in: query
-      description: id de la transferencia
+    - name: transactionCode 
+      in: path
+      description: Código de la transacción
       schema:
-        type: integer
+        type: string
   responses:
     '200':
       description: OK
