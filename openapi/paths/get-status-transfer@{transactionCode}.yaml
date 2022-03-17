@@ -26,3 +26,6 @@ get:
             $ref: ../components/schemas/PaymentStatus.yaml
     '400':
       $ref: ../components/responses/Problem.yaml
+    '401':
+      description: Unauthorized
+      $ref: ../components/responses/Unauthorized.yaml      
