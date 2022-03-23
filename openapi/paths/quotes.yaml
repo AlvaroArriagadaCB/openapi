@@ -29,9 +29,9 @@ post:
             status: 1
             symbol: USD
             value:
-              origin: 339
-              used: false
-            exchangedRate: 884.96
+              origin: 7999712
+              usd: true
+            exchangedRate: 799.97
     '401':
       description: Unauthorized
       $ref: ../components/responses/Unauthorized.yaml
@@ -39,4 +39,3 @@ post:
     # '403':
     #   description: Forbidden
     #   $ref: ../components/responses/Problem.yaml
-

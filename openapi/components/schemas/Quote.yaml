@@ -3,15 +3,15 @@ properties:
   amount:
     description: Monto a cotizar
     type: integer
-    example: 100000
+    example: 10000
   quoteType:
     description: Tipo de cotización
     type: string
-    example: sell
+    example: buy
   countryCode:
     description: País de destino (ISO  Code 2)
     type: string
-    example: PE
+    example: AL
   currency:
     description: Tipo de cambio
-    type: string
+    type: USD

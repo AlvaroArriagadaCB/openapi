@@ -12,7 +12,7 @@ properties:
   amount:
     description: Monto de origen en CLP
     type: integer
-    example: 600000
+    example: 10000
   quoteType:
     description: Tipo de compra
     type: string
@@ -28,4 +28,9 @@ properties:
   message:
     description: Mensaje de la transferencia
     type: string
-    message: "Fondos para estudios"
+    example: "Fondos para estudios"
+  dof:
+    description: Declaración de origen de fondos
+    type: string
+    example: "Fondos provienen de trabajo"
+    

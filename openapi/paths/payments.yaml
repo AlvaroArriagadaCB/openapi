@@ -30,4 +30,7 @@ post:
     '401':
       description: Unauthorized
       $ref: ../components/responses/Unauthorized.yaml
+    '408':
+      description: DOF
+      $ref: ../components/responses/DOF.yaml
   

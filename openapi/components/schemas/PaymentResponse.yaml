@@ -1,10 +1,6 @@
 type: object
 title: Payments
 properties:
-  id:
-    description: Identificador de transferencia
-    type: integer
-    example: 66993
   transactionCode:
     description: Código de transferencia
     type: string

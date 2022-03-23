@@ -1,7 +1,7 @@
 get:
   tags:
     - Payments
-  summary: Get Payment by ID
+  summary: Get Payment by TransactionCode
   description: |
    Obtener descripción de un pago a través de su código
   operationId: operationId

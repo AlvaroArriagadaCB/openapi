@@ -1,0 +1,16 @@
+type: object
+additionalProperties: true
+minProperties: 1
+description: >-
+  Problema ocurre cuando no se envia DOF cuando corresponde
+properties:
+  message:
+    type: string
+    description: >-
+      Mensaje del problema
+    example:
+      The 'dof' field is required!
+  code:
+    type: integer
+    description: The HTTP status code.
+    example: 408
