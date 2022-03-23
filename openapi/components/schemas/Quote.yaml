@@ -13,5 +13,6 @@ properties:
     type: string
     example: AL
   currency:
-    description: Tipo de cambio
-    type: USD
+    description: Moneda Destino
+    type: string
+    example: USD
