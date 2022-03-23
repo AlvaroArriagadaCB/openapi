@@ -8,7 +8,7 @@ properties:
   status:
     description: Estado de la transferencia,
     type: string,
-    example: exchanged-executed
+    example: exchange-executed
   createdAt: 
     description: Fecha de creación
     type: date
