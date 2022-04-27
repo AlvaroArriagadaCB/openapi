@@ -21,7 +21,7 @@
   </style>
   <body>
     <h1 style="margin-top:30px"> Implementación de la integración </h1>
-    <p>CurrencyBird utiliza el estándar OpenID, que también está basado en el protocolo OAuth2.0, éste permite implementar el proceso de autenticación de forma segura. 
+    <p>CurrencyBird utiliza el estándar OpenID Connect, que también está basado en el protocolo OAuth2.0, éste permite implementar el proceso de autenticación de forma segura. 
       El proceso de autenticación se lleva a cabo a través del intercambio de tokens entre el servicio CurrencyBird y la aplicación que va a integrar. A este intercambio se le denomina “Authorization Code Flow”.
     </p>
     <p>
@@ -32,9 +32,10 @@
     <h1 style="margin-bottom:20px">Paso 1: Crear token de estado anti-falsificación</h1>
     <p>El integrador se debe encargar de proteger a sus clientes de prevención de ataques de falsificación de peticiones, entonces para ello se le solicita un token de sesión único, que mantenga el estado entre su cliente y la aplicación integrada.</p>
     <p>Este token debe coincidir de vuelta con la petición de autenticación al sitio web de CurrencyBird, así ambas aplicaciones verifican que se trate del cliente que está haciendo la solicitud y no de un atacante malicioso.</p>
+    <p> Se recomienda generar una cadena aleatoria de caracteres a través de una librería o generar un hash por medio de un secreto.</p>
     <br>
     <h1 style="margin-bottom:20px">Paso 2: Enviar solicitud de autenticación a CurrencyBird</h1>
-    <p>El paso que viene es hacer una solicitud GET vía HTTPS con los parámetros correspondientes en la UR</p>
+    <p>El paso que viene es hacer una solicitud GET vía HTTPS con los parámetros correspondientes en la URI</p>
     <p>La URI donde debe ser enviada la solicitud GET es la siguiente:</p>
     <br>
     <p style="color:rgb(39, 74, 109); font-size: 18px;font-weight: bold;">https://dev.ducvzevnwiarn.amplifyapp.com/openid/authorize</p>
