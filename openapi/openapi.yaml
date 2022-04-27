@@ -6,7 +6,7 @@ info:
   x-logo:
     url: 'https://currencybird.cl/img/logo_bird.png'
   description:
-    $ref: ./info-description.md
+    $ref: ./auth.html
 tags:
   - name: Quotes
     description: Endpoint para realizar cotizaciones a través de parámetros de entrada
@@ -22,6 +22,8 @@ servers:
   - url: 'http://elb.currencybird.cl/apigateway-company/api/'
   - url: 'https://elb.currencybird.cl/apigateway-company/api/'
 paths:
+  /auth:
+    $ref: paths/auth.yaml
   /quotes:
     $ref: paths/quotes.yaml
   /reasons:
@@ -40,3 +42,4 @@ components:
     BearerAuth:
       type: http
       scheme: bearer
+      

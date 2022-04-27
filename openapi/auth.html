@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Redoc</title>
+    <!-- needed for adaptive design -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
+  </head>
+  <style>
+    p{
+      font-size: 15px;
+    }
+    li{
+      font-size: 15px;
+    }
+    b{
+      color: rgba(221, 95, 49, 0.771);
+      font-size:17px;
+    }
+  </style>
+  <body>
+    <h1 style="margin-top:30px"> Implementación de la integración </h1>
+    <p>CurrencyBird utiliza el estándar OpenID, que también está basado en el protocolo OAuth2.0, éste permite implementar el proceso de autenticación de forma segura. 
+      El proceso de autenticación se lleva a cabo a través del intercambio de tokens entre el servicio CurrencyBird y la aplicación que va a integrar. A este intercambio se le denomina “Authorization Code Flow”.
+    </p>
+    <p>
+      Este diagrama muestra simplificadamente la interoperación de CurrencyBird como mecanismo de autenticación entre un sitio web y sus usuarios
+    </p>
+    <img src="https://i.ibb.co/m9G1fk6/Openid-img1.png" alt="diagram1">
+    <br>
+    <h1 style="margin-bottom:20px">Paso 1: Crear token de estado anti-falsificación</h1>
+    <p>El integrador se debe encargar de proteger a sus clientes de prevención de ataques de falsificación de peticiones, entonces para ello se le solicita un token de sesión único, que mantenga el estado entre su cliente y la aplicación integrada.</p>
+    <p>Este token debe coincidir de vuelta con la petición de autenticación al sitio web de CurrencyBird, así ambas aplicaciones verifican que se trate del cliente que está haciendo la solicitud y no de un atacante malicioso.</p>
+    <br>
+    <h1 style="margin-bottom:20px">Paso 2: Enviar solicitud de autenticación a CurrencyBird</h1>
+    <p>El paso que viene es hacer una solicitud GET vía HTTPS con los parámetros correspondientes en la UR</p>
+    <p>La URI donde debe ser enviada la solicitud GET es la siguiente:</p>
+    <br>
+    <p style="color:rgb(39, 74, 109); font-size: 18px;font-weight: bold;">https://dev.ducvzevnwiarn.amplifyapp.com/openid/authorize</p>
+    <br>
+    <p>Los parámetros que deben ser enviados en la URI son:</p>
+    <ol>
+      <li><b>client_id:</b>Identificador de la integración es único y debe ser solicitado a CurrencyBird.</li>
+      <li><b>response_type:</b>Este parámetro es parte de la lógica utilizada por OpenID, debe ser code.</li>
+      <li><b>redirect_uri</b>En este parámetro debe ir la URI (codificada en formato URL) de la aplicación que se integrará con CurrencyBird. Esta URI es la que recibe la respuesta por parte de CurrencyBird.</li>
+      <li><b>scope:</b>Este parámetro permite especificar qué permiso se está solicitando, en este caso openid beneficiary payments</li>
+      <li><b>state</b>Aquí debe ir el mismo token único de sesión generado en el paso 1.</li>
+    </ol>
+    <p> El resultado de la URL final sería éste (ejemplo):</p>
+    <p style="color:rgb(39, 74, 109); font-size: 20px;">https://dev.ducvzevnwiarn.amplifyapp.com/openid/authorize/?client_id=ADNx7HkjoeU6uarez3uYnn41VmGkd600&response_type=code&scope=openid payments beneficiary&redirect_uri=https%3A%2F%2Fintegrador.partner.cl%2Fcallback&state=abcd123456</p>
+    <br>
+    <p>Cuando la aplicación integradora invoca a la URI se levanta la aplicación de autenticación:</p>
+    <img src="https://i.ibb.co/6ZvGChM/img2.png" alt="imagen2">
+    <br>
+    <h1 style="margin-bottom:20px">Paso 3: Confirmar el token de antifalsificación</h1>
+    <br>
+    <p>La respuesta que se obtiene desde el paso 2, luego de revisar las credenciales del representante legal es enviada a la dirección registrada como redirect_uri, añadiendo los valores <b>code</b> y <b>state.</b></p>
+    <br>
+    <p>https://integrador.partner.cl/callback/?code=aaf3-2abcc520&state=abcd123456</p>
+    <p>El integrador debe verificar en su aplicación que el state corresponda al mismo código generado en el paso 1.</p>
+    <h1 style="margin-bottom:20px">Paso 4: Solicitar token de acceso</h1>
+    <br>
+    <p>La respuesta del paso 3 incluye el code que es un código de autorización con una duración de expiración de 5 minutos y permite al integrador continuar con el proceso de autenticación, para poder solicitar el token de acceso.</p>
+    <br>
+    <p>Si el parámetro Code expira, el servidor arrojará una excepción y el usuario tendrá que loguearse nuevamente.</p>
+    <br>
+    <img src="https://i.ibb.co/zZyMXMv/Screenshot-2022-04-27-at-01-30-36.png" alt="imagen2">
+    <br>
+    <p>Para solicitar token de acceso se debe enviar una solicitud POST via HTTPS, la URI que debe ser enviada, tiene los siguiente atributos:</p>
+    <br>
+    <ol>
+      <li><b>client_id:</b>Identificador de la integración es único y debe ser solicitado a CurrencyBird.</li>
+      <li><b>client_secret:</b>Secreto asociado a la integración, jamás debe ser expuesto, debe ser solicitado.</li>
+      <li><b>grant-type:</b>Este parámetro es parte de la lógica utilizada por OpenID Connect y siempre debe ser authorization_code.</li>
+      <li><b>redirect_uri</b>En este parámetro debe ir la URI (codificada en formato URL) de la aplicación que se integrará con CurrencyBird. Esta URI es la que recibe la respuesta por parte de CurrencyBird.</li>
+      <li><b>code:</b>Código de acceso que fue obtenido en el paso 3.</li>
+      <li><b>state</b>Aquí debe ir el mismo token único de sesión generado en el paso 1.</li>
+    </ol>
+    <br>
+    <p>Este es un ejemplo de petición access_token, los parámetros deben ir en el body</p>
+    <img src="https://i.ibb.co/PgYfQkg/Screenshot-2022-04-27-at-01-34-30.png" alt="imagen2">
+    <br>
+    <p>El access token generado es exclusivo para el representante legal que se autenticó y dio consentimiento del uso de sus datos.</p>
+    <br>
+    <h1 style="margin-bottom:20px">Paso 5: Solicitar contenido</h1>
+    <br>
+    <p>Al generar el accessToken se puede acceder al contenido asociado al representante legal, por ejemplo se puede ver cuáles son sus destinatarios asociados: </p>
+    <br>
+    <img src="https://i.ibb.co/w7qtx9j/Screenshot-2022-04-27-at-01-36-38.png" alt="imagen2">
+    <br>
+    <p>Si colocamos el rut de una empresa que no corresponda a este representante legal, entonces no permitirá acceder al contenido. </p>
+    <br>
+    <img src="https://i.ibb.co/HY1HhpF/Screenshot-2022-04-27-at-01-38-11.png" alt="imagen2">
+    <redoc spec-url='http://petstore.swagger.io/v2/swagger.json'></redoc>
+    <script src="https://cdn.jsdelivr.net/npm/redoc@latest/bundles/redoc.standalone.js"> </script>
+  </body>
+</html>
