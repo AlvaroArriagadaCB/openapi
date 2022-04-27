@@ -22,8 +22,6 @@ servers:
   - url: 'http://elb.currencybird.cl/apigateway-company/api/'
   - url: 'https://elb.currencybird.cl/apigateway-company/api/'
 paths:
-  /auth:
-    $ref: paths/auth.yaml
   /quotes:
     $ref: paths/quotes.yaml
   /reasons:
