@@ -74,10 +74,10 @@
     <p style="font-size:18px; font-weight:bold">https://elb.currencybird.cl/apigateway-company/auth/access-token</p>
     <br>
     <ol>
-      <li><b>client_id:</b>Identificador de la integración es único y debe ser solicitado a CurrencyBird.</li>
-      <li><b>client_secret:</b>Secreto asociado a la integración, jamás debe ser expuesto, debe ser solicitado.</li>
-      <li><b>grant-type:</b>Este parámetro es parte de la lógica utilizada por OpenID Connect y siempre debe ser authorization_code.</li>
-      <li><b>redirect_uri</b>En este parámetro debe ir la URI (codificada en formato URL) de la aplicación que se integrará con CurrencyBird. Esta URI es la que recibe la respuesta por parte de CurrencyBird.</li>
+      <li><b>clientId:</b>Identificador de la integración es único y debe ser solicitado a CurrencyBird.</li>
+      <li><b>clientSecret:</b>Secreto asociado a la integración, jamás debe ser expuesto, debe ser solicitado.</li>
+      <li><b>granType:</b>Este parámetro es parte de la lógica utilizada por OpenID Connect y siempre debe ser authorization_code.</li>
+      <li><b>redirectUri</b>En este parámetro debe ir la URI (codificada en formato URL) de la aplicación que se integrará con CurrencyBird. Esta URI es la que recibe la respuesta por parte de CurrencyBird.</li>
       <li><b>code:</b>Código de acceso que fue obtenido en el paso 3.</li>
       <li><b>state</b>Aquí debe ir el mismo token único de sesión generado en el paso 1.</li>
     </ol>
