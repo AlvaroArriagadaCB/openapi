@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: API para empresas
+  title: Integración de aplicaciones externas
   contact:
     email: alvaroarriagada@currencybird.cl
   x-logo:
@@ -19,8 +19,8 @@ tags:
 
 servers:
 
-  - url: 'http://elb.currencybird.cl/apigateway-company/api/'
-  - url: 'https://elb.currencybird.cl/apigateway-company/api/'
+  - url: 'http://elb.currencybird.cl/apigateway-external/api/'
+  - url: 'https://elb.currencybird.cl/apigateway-external/api/'
 paths:
   /quotes:
     $ref: paths/quotes.yaml

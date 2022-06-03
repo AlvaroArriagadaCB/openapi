@@ -23,8 +23,8 @@ tags:
   - name: Beneficiaries
     description: Endpoints para consultar destinatarios asociados a una empresa
 servers:
-  - url: https://elb.currencybird.cl/apigateway-company/api/
-  - url: https://elb.currencybird.cl/apigateway-company/api/
+  - url: https://elb.currencybird.cl/apigateway-external/api/
+  - url: https://elb.currencybird.cl/apigateway-external/api/
 paths:
   /quote:
     get:
