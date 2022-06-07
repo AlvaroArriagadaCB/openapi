@@ -1,0 +1,52 @@
+get:
+  tags:
+    - Beneficiaries
+  summary: Get Account By ID Beneficiary
+  description: |
+    Obtener los datos de la cuenta a partir de un id beneficiario
+  operationId: getAccount
+  parameters:
+    - name: rut 
+      in: path
+      description: Rut de la empresa
+      schema:
+        type: string
+  security:
+    - main_auth:
+        - 'read:quotes'
+    - api_key: []
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/responses/Beneficiaries.yaml
+          example:
+            id: 31598,
+            recipientId: 31757,
+            countryId: 55,
+            accountNumber: DE89172836746767647875,
+            bank: CRPEPEPLXXX
+            accountType: null,
+            currencyId: 148,
+            routingNumber: null,
+            identificationType: null,
+            identificationValue: null,
+            bankName: null,
+            localBankCode: null,
+            Currency.id: 148,
+            Currency.name: dolar [estadounidense],
+            Currency.symbol: USD,
+            Country.id: 55,
+            Country.name: Alemania
+            
+    '401':
+      description: Unauthorized
+      $ref: ../components/responses/Unauthorized.yaml
+      
+            
+    # '403':
+    #   description: Forbidden
+    #   $ref: ../components/responses/Problem.yaml
+

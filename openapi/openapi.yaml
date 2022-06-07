@@ -22,18 +22,20 @@ servers:
   - url: 'http://elb.currencybird.cl/apigateway-external/api/'
   - url: 'https://elb.currencybird.cl/apigateway-external/api/'
 paths:
-  /quotes:
+  /quotes?rut=:
     $ref: paths/quotes.yaml
-  /reasons:
+  /reasons?rut=:
     $ref: paths/reasons.yaml
-  /payments:
+  /payments?rut=:
     $ref: paths/payments.yaml
-  /payments/{transactionCode}:
+  /payments/:transactionCode?rut=:
     $ref: paths/get-transfer@{transactionCode}.yaml
-  /payments/{transactionCode}/status:
+  /payments/:transactionCode/status?rut:
     $ref: paths/get-status-transfer@{transactionCode}.yaml
-  /beneficiaries:
+  /beneficiaries?rut=:
     $ref: paths/beneficiaries@{rut}.yaml
+  /beneficiaries/:idBeneficiary/account?rut=:
+    $ref: paths/getAccount@{idBeneficiary}.yaml
     
 components:
   securitySchemes:
