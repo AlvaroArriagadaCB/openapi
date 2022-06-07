@@ -9,7 +9,48 @@ properties:
     description: Estado de la transferencia
     type: string
     example: new
+  date:
+    description: Fecha de cración transferencia
+    type: date
+    example: 2022-06-07T16:29:09.552Z
+  beneficiary:
+    description: Nombre del beneficiario
+    type: string
+    example: Marcelo Douglas
+  accountNumber:
+    description: Número de la cuenta
+    type: string
+    example: DE89172836746767647875
   companyId:
     description: Identificador de la empresa 
     type: integer
     example: 64
+  expectedAmount:
+    description: Monto esperado
+    type: integer
+    example: 7553210
+  exchangedRate:
+    description: Tasa de cambio
+    type: integer
+    example: 226596
+  amountOrigin:
+    description: Monto a depositar
+    type: integer
+    example: 7779806
+  amountDestination:
+    description: Monto en destino
+    type: integer
+    example: 9000
+  expectedExchangeRate:
+    description: Tipo de cambio esperado
+    type: integer
+    example: 839.25
+  reason:
+    description: Razón para transferir
+    type: integer
+    example: 55
+  message:
+    description: Mensaje transferencia
+    type: string
+    example: Para familiares
+    
