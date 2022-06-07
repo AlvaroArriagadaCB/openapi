@@ -1,7 +1,7 @@
 type: object
 title: payments
 properties:
-  code:
+  transactionCode:
     description: Código de la transferencia
     type: string
     example: 8117d9ad18014

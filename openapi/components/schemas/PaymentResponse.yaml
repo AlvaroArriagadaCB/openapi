@@ -53,4 +53,16 @@ properties:
     description: Mensaje transferencia
     type: string
     example: Para familiares
+  dataToTransfer:
+    description: Datos para transferir
+    type: object 
+    example: {
+      Recipient: Currency Bird SpA,
+      Rut: 76.507.188-7,
+      Bank: BCI,
+      AccountNumber: 61527106,
+      Amount: 7779806,
+      Email: registro@currencybird.cl,
+      Message": 89dd2e2433e14
+    }
     
